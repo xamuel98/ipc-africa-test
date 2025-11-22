@@ -1,0 +1,100 @@
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
+
+export interface Item {
+    id: number
+    color: string
+    shape: string
+}
+
+export const useGridStore = defineStore('grid', () => {
+    // Initial data
+    const items = ref<Item[]>([
+        { id: 1, color: 'red', shape: 'oval' },
+        { id: 2, color: 'blue', shape: 'round' },
+        { id: 3, color: 'green', shape: 'triangle' },
+        { id: 4, color: 'yellow', shape: 'square' },
+        { id: 5, color: 'lightblue', shape: 'rectangle' },
+        { id: 6, color: 'grey', shape: 'oval' },
+        { id: 7, color: 'red', shape: 'round' },
+        { id: 8, color: 'blue', shape: 'triangle' },
+        { id: 9, color: 'green', shape: 'square' },
+    ])
+
+    const availableColors = ['red', 'blue', 'green', 'yellow', 'lightblue', 'grey']
+    const availableShapes = ['oval', 'round', 'triangle', 'square', 'rectangle']
+
+    const selectedColors = ref<string[]>([...availableColors])
+    const selectedShapes = ref<string[]>([...availableShapes])
+
+    const toggleFilter = (type: 'color' | 'shape', value: string) => {
+        const target = type === 'color' ? selectedColors : selectedShapes
+        const allOptions = type === 'color' ? availableColors : availableShapes
+
+        if (target.value.includes(value)) {
+            // If it's the last one, select all
+            if (target.value.length === 1) {
+                target.value = [...allOptions]
+            } else {
+                target.value = target.value.filter(item => item !== value)
+            }
+        } else {
+            target.value.push(value)
+        }
+    }
+
+    const filteredItems = computed(() => {
+        return items.value.filter(item =>
+            selectedColors.value.includes(item.color) &&
+            selectedShapes.value.includes(item.shape)
+        )
+    })
+
+    const title = computed(() => {
+        const allColorsSelected = selectedColors.value.length === availableColors.length
+        const allShapesSelected = selectedShapes.value.length === availableShapes.length
+        const multipleColors = selectedColors.value.length > 1 && !allColorsSelected
+        const multipleShapes = selectedShapes.value.length > 1 && !allShapesSelected
+        const singleColor = selectedColors.value.length === 1
+        const singleShape = selectedShapes.value.length === 1
+
+        // 1. All items
+        if (allColorsSelected && allShapesSelected) return "All items:"
+
+        // 2. Multiple items (all colors & multiple shapes OR all shapes & multiple colors)
+        if ((allColorsSelected && multipleShapes) || (allShapesSelected && multipleColors)) return "Multiple items:"
+
+        // 3. All [color] items (all shapes & single color)
+        if (allShapesSelected && singleColor) return `All ${selectedColors.value[0]} items:`
+
+        // 4. All [shape] items (all colors & single shape)
+        if (allColorsSelected && singleShape) return `All ${selectedShapes.value[0]} items:`
+
+        // 5. Multiple [color] items (multiple shapes & single color)
+        if (multipleShapes && singleColor) return `Multiple ${selectedColors.value[0]} items:`
+
+        // 6. Multiple [shape] items (multiple colors & single shape)
+        if (multipleColors && singleShape) return `Multiple ${selectedShapes.value[0]} items:`
+
+        // 7. [Shape] [color] items (single color & single shape)
+        if (singleColor && singleShape) {
+            // Capitalize first letter
+            const shape = selectedShapes.value[0].charAt(0).toUpperCase() + selectedShapes.value[0].slice(1)
+            const color = selectedColors.value[0]
+            return `${shape} ${color} items:`
+        }
+
+        return "Items:"
+    })
+
+    return {
+        items,
+        availableColors,
+        availableShapes,
+        selectedColors,
+        selectedShapes,
+        toggleFilter,
+        filteredItems,
+        title
+    }
+})
