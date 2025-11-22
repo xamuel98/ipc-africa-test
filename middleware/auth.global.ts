@@ -1,11 +1,20 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-    const authCookie = useCookie('auth')
+  let authCookie: ReturnType<typeof useCookie> | { value: false };
 
-    if (to.path !== '/login' && !authCookie.value) {
-        return navigateTo('/login')
-    }
+  try {
+    authCookie = useCookie("auth");
+  } catch (e) {
+    console.warn("Failed to read auth cookie", e);
+    authCookie = { value: false };
+  }
 
-    if (to.path === '/login' && authCookie.value) {
-        return navigateTo('/')
-    }
-})
+  //   console.log(authCookie.value);
+
+  if (to.path !== "/login" && !authCookie.value) {
+    return navigateTo("/login");
+  }
+
+  if (to.path === "/login" && authCookie.value) {
+    return navigateTo("/");
+  }
+});

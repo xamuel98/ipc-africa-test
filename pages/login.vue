@@ -32,6 +32,7 @@
               id="password"
               :type="showPassword ? 'text' : 'password'"
               placeholder="••••••••"
+              autocomplete="false"
             />
             <button
               type="button"
