@@ -1,0 +1,37 @@
+[
+  { "id": 1, "shape": "oval", "color": "blue" },
+  { "id": 2, "shape": "oval", "color": "green" },
+  { "id": 3, "shape": "oval", "color": "yellow" },
+  { "id": 4, "shape": "oval", "color": "lightblue" },
+  { "id": 5, "shape": "oval", "color": "grey" },
+  
+  { "id": 6, "shape": "round", "color": "red" },
+  { "id": 7, "shape": "round", "color": "green" },
+  { "id": 8, "shape": "round", "color": "yellow" },
+  { "id": 9, "shape": "round", "color": "lightblue" },
+  { "id": 10, "shape": "round", "color": "grey" },
+
+  { "id": 11, "shape": "triangle", "color": "red" },
+  { "id": 12, "shape": "triangle", "color": "blue" },
+  { "id": 13, "shape": "triangle", "color": "yellow" },
+  { "id": 14, "shape": "triangle", "color": "lightblue" },
+  { "id": 15, "shape": "triangle", "color": "grey" },
+
+  { "id": 16, "shape": "square", "color": "red" },
+  { "id": 17, "shape": "square", "color": "blue" },
+  { "id": 18, "shape": "square", "color": "green" },
+  { "id": 19, "shape": "square", "color": "lightblue" },
+  { "id": 20, "shape": "square", "color": "grey" },
+
+  { "id": 21, "shape": "rectangle", "color": "red" },
+  { "id": 22, "shape": "rectangle", "color": "blue" },
+  { "id": 23, "shape": "rectangle", "color": "green" },
+  { "id": 24, "shape": "rectangle", "color": "yellow" },
+  { "id": 25, "shape": "rectangle", "color": "grey" },
+  
+  { "id": 26, "shape": "oval", "color": "red" },
+  { "id": 27, "shape": "round", "color": "blue" },
+  { "id": 28, "shape": "triangle", "color": "green" },
+  { "id": 29, "shape": "square", "color": "yellow" },
+  { "id": 30, "shape": "rectangle", "color": "lightblue" }
+]

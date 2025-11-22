@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import itemsData from '~/data/items.json'
 
 export interface Item {
     id: number
@@ -9,17 +10,7 @@ export interface Item {
 
 export const useGridStore = defineStore('grid', () => {
     // Initial data
-    const items = ref<Item[]>([
-        { id: 1, color: 'red', shape: 'oval' },
-        { id: 2, color: 'blue', shape: 'round' },
-        { id: 3, color: 'green', shape: 'triangle' },
-        { id: 4, color: 'yellow', shape: 'square' },
-        { id: 5, color: 'lightblue', shape: 'rectangle' },
-        { id: 6, color: 'grey', shape: 'oval' },
-        { id: 7, color: 'red', shape: 'round' },
-        { id: 8, color: 'blue', shape: 'triangle' },
-        { id: 9, color: 'green', shape: 'square' },
-    ])
+    const items = ref<Item[]>(itemsData)
 
     const availableColors = ['red', 'blue', 'green', 'yellow', 'lightblue', 'grey']
     const availableShapes = ['oval', 'round', 'triangle', 'square', 'rectangle']

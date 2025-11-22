@@ -5,7 +5,7 @@
     <div
       :class="[shapeClasses]"
       :style="{ backgroundColor: color }"
-      class="w-32 h-32 transition-all duration-300"
+      class="transition-all duration-300"
     ></div>
   </div>
 </template>
@@ -19,17 +19,17 @@ const props = defineProps<{
 const shapeClasses = computed(() => {
   switch (props.shape) {
     case "oval":
-      return "rounded-[50%]";
+      return "rounded-[50%] w-32 h-20 md:w-48 md:h-32";
     case "round":
-      return "rounded-full";
+      return "rounded-full w-24 h-24 md:w-32 md:h-32";
     case "triangle":
-      return "clip-triangle";
+      return "clip-triangle w-24 h-24 md:w-32 md:h-32";
     case "square":
-      return "rounded-none";
+      return "rounded-none w-24 h-24 md:w-32 md:h-32";
     case "rectangle":
       return "rounded-none aspect-[5/2] w-full h-auto";
     default:
-      return "";
+      return "w-24 h-24 md:w-32 md:h-32";
   }
 });
 </script>
