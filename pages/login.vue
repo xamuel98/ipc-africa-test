@@ -97,8 +97,13 @@ const showPassword = ref(false);
 const error = ref("");
 const router = useRouter();
 
+const config = useRuntimeConfig();
+
 const handleLogin = () => {
-  if (username.value === "admin" && password.value === "password") {
+  if (
+    username.value === config.public.adminUser &&
+    password.value === config.public.adminPassword
+  ) {
     // Set cookie for auth
     const authCookie = useCookie("auth");
     authCookie.value = "true";

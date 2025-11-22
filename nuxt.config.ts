@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    devtools: { enabled: true },
     css: ['~/assets/css/main.css'],
     postcss: {
         plugins: {
@@ -8,5 +7,13 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
-    modules: ['@pinia/nuxt'],
+    modules: [
+        '@pinia/nuxt'
+    ],
+    runtimeConfig: {
+        public: {
+            adminUser: process.env.NUXT_PUBLIC_ADMIN_USER || 'admin',
+            adminPassword: process.env.NUXT_PUBLIC_ADMIN_PASSWORD || 'password'
+        }
+    }
 })
